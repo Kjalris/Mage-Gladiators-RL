@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Vector3 ground_check_offset;
     [SerializeField] LayerMask ground_layer;
 
-    float gravity_value;
+    private Vector3 player_velocity;
 
     bool running = false;
     bool is_grounded;
@@ -43,20 +43,23 @@ public class PlayerController : MonoBehaviour
 
         var move_direction = camera_controller.GetPlanerRotation() * move_input;
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && is_grounded == true)
         {
             animator.Play("Jumping");
-            characterController.Move(new Vector3(0, jump_height, 0) * movement_speed * Time.deltaTime);
+            player_velocity.y += Mathf.Sqrt(jump_height * -3.0f * Physics.gravity.y);
         }
+
+        player_velocity.y += Physics.gravity.y * Time.deltaTime;
+        characterController.Move(player_velocity * Time.deltaTime);
 
         CheckGrounded();
         if (is_grounded)
         {
-            gravity_value = -0.5f;
+            player_velocity.y = -0.5f;
         }
         else
         {
-            gravity_value += Physics.gravity.y * Time.deltaTime;
+            player_velocity.y += Physics.gravity.y * Time.deltaTime;
         }
 
         if (movement > 0)
