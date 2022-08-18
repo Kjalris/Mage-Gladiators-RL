@@ -17,6 +17,7 @@ public class SpellCasting : MonoBehaviour
     [SerializeField] float spread_of_spell;
     [SerializeField] float mana_regain_time;
     [SerializeField] float time_between_spells;
+    [SerializeField] float Damage;
 
     [Header("Mana")]
     [SerializeField] int mana_size;
