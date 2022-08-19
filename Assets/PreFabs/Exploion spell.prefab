@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5225757578584352425}
-  explosion: {fileID: 5794850962707933442, guid: c101c22fe08371442a4a0f7a0327497b, type: 3}
+  explosion: {fileID: 8821503184756900058, guid: c101c22fe08371442a4a0f7a0327497b, type: 3}
   enemies_layer:
     serializedVersion: 2
     m_Bits: 128
