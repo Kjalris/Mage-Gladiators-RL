@@ -17,7 +17,7 @@ public class SpellCasting : MonoBehaviour
     [SerializeField] float spread_of_spell;
     [SerializeField] float mana_regain_time;
     [SerializeField] float time_between_spells;
-    [SerializeField] float Damage;
+    [SerializeField] float damage;
 
     [Header("Mana")]
     [SerializeField] int mana_size;
@@ -32,6 +32,7 @@ public class SpellCasting : MonoBehaviour
     public Camera cam;
     public Transform attack_point;
     public TextMeshProUGUI mana_display;
+    public ManaBar manaBar;
 
     // make sure when starting that mana is set to max and is ready
     public void Awake()
@@ -40,18 +41,24 @@ public class SpellCasting : MonoBehaviour
         ready_to_cast = true;
     }
 
+    public void Start()
+    {
+        mana_left = mana_size;
+        manaBar.SetMaxMana(mana_size);
+    }
+
     public void Update()
     {
-        My_input();
+        MyInput();
 
         if (mana_display != null)
         {
             mana_display.SetText(mana_left / mana_pr_spellcast + " / " + mana_size / mana_pr_spellcast);
         }
-
+        manaBar.SetMana(mana_left);
     }
 
-    private void My_input()
+    private void MyInput()
     {
         if (allow_button_hold) casting = Input.GetKey(KeyCode.Mouse0);
         else casting = Input.GetKeyDown(KeyCode.Mouse0);
@@ -113,15 +120,14 @@ public class SpellCasting : MonoBehaviour
         current_spell.GetComponent<Rigidbody>().AddForce(direction_with_spread.normalized * spell_force, ForceMode.Impulse);
         current_spell.GetComponent<Rigidbody>().AddForce(cam.transform.up * upward_force, ForceMode.Impulse);
 
-
-
+        // update counter
         mana_left--;
         mana_used++;
 
         // invoke reset_spell function (if not already invoked)
         if (allow_invoke)
         {
-            Invoke("Reset_spell", time_between_spell_casting);
+            Invoke("ResetSpell", time_between_spell_casting);
             allow_invoke = false;
         }
 
@@ -131,7 +137,7 @@ public class SpellCasting : MonoBehaviour
         }
     }
 
-    private void Reset_spell()
+    private void ResetSpell()
     {
         // allow spell casting again
         ready_to_cast = true;
@@ -141,10 +147,10 @@ public class SpellCasting : MonoBehaviour
     private void Reload()
     {
         reloading = true;
-        Invoke("Reload_finished", mana_regain_time);
+        Invoke("ReloadFinished", mana_regain_time);
     }
 
-    private void Reload_finished()
+    private void ReloadFinished()
     {
         mana_left = mana_size;
         reloading = false;

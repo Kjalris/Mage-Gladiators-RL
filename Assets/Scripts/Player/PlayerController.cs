@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         // If player reaches 0 hp, destroy player
-        if (playerManagement.Get_current_hp() == 0)
+        if (playerManagement.GetCurrentHP() == 0)
         {
             animator.Play("Death");
             Invoke("Delay", 3f);

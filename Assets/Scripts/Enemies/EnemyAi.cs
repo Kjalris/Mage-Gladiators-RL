@@ -6,20 +6,18 @@ using UnityEngine.AI;
 public class EnemyAi : MonoBehaviour
 {
     public NavMeshAgent agent;
-
+    public PlayerManagement playerManagement;
     public Transform player;
 
     public LayerMask obstacles_layer, player_layer;
 
-
-
     // Attacking
     [Header("Enemy attributes")]
     [SerializeField] float time_between_attacks;
-    [SerializeField] float attack_damage;
+    [SerializeField] int attack_damage;
     [SerializeField] float attack_range;
     [SerializeField] float sight_range;
-    [SerializeField] float health = 5;
+    [SerializeField] int health;
     bool already_attacked = false;
 
     // States
@@ -27,10 +25,13 @@ public class EnemyAi : MonoBehaviour
     public bool player_in_attack_range;
     public bool player_in_sight_range;
 
+
+
     public void Awake()
     {
         player = GameObject.Find("Kachujin G Rosales").transform;
         agent = GetComponent<NavMeshAgent>();
+        playerManagement = GetComponent<PlayerManagement>();
     }
 
     public void Update()
@@ -41,20 +42,20 @@ public class EnemyAi : MonoBehaviour
 
         if (player_in_sight_range && !player_in_attack_range)
         {
-            Chase_player();
+            ChasePlayer();
         }
         if (player_in_sight_range && player_in_attack_range)
         {
-            Attack_player();
+            AttackPlayer();
         }
 
 
     }
-    private void Chase_player()
+    private void ChasePlayer()
     {
         agent.SetDestination(player.position);
     }
-    private void Attack_player()
+    private void AttackPlayer()
     {
         // stop enemy from moving when reaching attack range
         agent.SetDestination(transform.position);
@@ -63,27 +64,30 @@ public class EnemyAi : MonoBehaviour
 
         if (!already_attacked)
         {
+            // TODO: player does not take dmg, needs fix
+            playerManagement.TakeDamage(attack_damage);
             already_attacked = true;
-            Invoke(nameof(Reset_attack), time_between_attacks);
+            Invoke(nameof(ResetAttack), time_between_attacks);
         }
     }
 
-    public void Reset_attack()
+    public void ResetAttack()
     {
         already_attacked = false;
     }
 
-    public void Take_damage(int damage)
+    public void RecieveDamage(int damage)
     {
         health -= damage;
 
         if (health <= 0)
         {
-            Invoke(nameof(Destroy_enemy), 5f);
+            // TODO: Insert death animation of enemies
+            Invoke(nameof(DestroyEnemy), 0.5f);
         }
     }
 
-    public void Destroy_enemy()
+    public void DestroyEnemy()
     {
         Destroy(gameObject);
     }

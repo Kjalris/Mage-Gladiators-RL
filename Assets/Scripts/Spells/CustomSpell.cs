@@ -19,7 +19,6 @@ public class CustomSpell : MonoBehaviour
     public int explosion_range;
 
     // lifetime
-    [SerializeField] float max_life_time;
     public int max_collision;
     public bool explode_on_touch = true;
 
@@ -28,8 +27,6 @@ public class CustomSpell : MonoBehaviour
 
     private void Update()
     {
-        max_life_time = -Time.deltaTime;
-
         if (collisions > max_collision)
         {
             Explode();
@@ -63,15 +60,13 @@ public class CustomSpell : MonoBehaviour
         }
 
         // check for enemies
-        // Collider[] enemies = Physics.OverlapSphere(transform.position, explosion_range, enemies_layer);
+        Collider[] enemies = Physics.OverlapSphere(transform.position, explosion_range, enemies_layer);
 
-        /*for (int i; i < enemies.Length; i++)
+        for (int i = 0; i < enemies.Length; i++)
         {
-            // get component of enemies and call take dmg
-            
-            // example
-            // enemies[i].GetComponent<Enemies>().take_damage(explosion_damage);
-        } */
+
+            enemies[i].GetComponent<EnemyAi>().RecieveDamage(explosion_damage);
+        } 
 
         // delay explosion to avoid bugs, is not be visible ingame
         Invoke("Delay", 0.05f);

@@ -60,10 +60,11 @@
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Spells\SpellCasting.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemyAi.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerManagement.cs" />
     <Compile Include="Assets\Scripts\Spells\CustomSpell.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\UI\HealthBar.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerManagement.cs" />
+    <Compile Include="Assets\Scripts\UI\ManaBar.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

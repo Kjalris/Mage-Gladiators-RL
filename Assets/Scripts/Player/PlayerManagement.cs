@@ -14,15 +14,14 @@ public class PlayerManagement : MonoBehaviour
     private void Start()
     {
         current_hp = max_hp;
-        health_bar.Set_max_hp(max_hp);
-        
+        health_bar.SetMaxHP(max_hp);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Take_damage(1);
+            TakeDamage(1);
         }
 
         if (hp_display != null)
@@ -31,14 +30,15 @@ public class PlayerManagement : MonoBehaviour
         }
     }
 
-    private void Take_damage(int damage)
+    public void TakeDamage(int damage)
     {
         current_hp -= damage;
 
-        health_bar.Set_hp(current_hp);
+        health_bar.SetHP(current_hp);
+
     }
 
-    public int Get_current_hp()
+    public int GetCurrentHP()
     {
         return current_hp;
     }

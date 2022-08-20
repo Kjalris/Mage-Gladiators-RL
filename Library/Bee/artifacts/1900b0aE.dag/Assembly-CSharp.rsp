@@ -368,6 +368,7 @@
 "Assets/Scripts/Spells/CustomSpell.cs"
 "Assets/Scripts/Spells/SpellCasting.cs"
 "Assets/Scripts/UI/HealthBar.cs"
+"Assets/Scripts/UI/ManaBar.cs"
 -langversion:9.0
 
 /deterministic
