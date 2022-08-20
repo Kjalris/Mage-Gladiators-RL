@@ -362,10 +362,12 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/navmeshsurface.cs"
 "Assets/Scripts/CameraController.cs"
-"Assets/Scripts/CustomSpell.cs"
-"Assets/Scripts/EnemyAi.cs"
-"Assets/Scripts/PlayerController.cs"
-"Assets/Scripts/SpellCasting.cs"
+"Assets/Scripts/Enemies/EnemyAi.cs"
+"Assets/Scripts/Player/PlayerController.cs"
+"Assets/Scripts/Player/PlayerManagement.cs"
+"Assets/Scripts/Spells/CustomSpell.cs"
+"Assets/Scripts/Spells/SpellCasting.cs"
+"Assets/Scripts/UI/HealthBar.cs"
 -langversion:9.0
 
 /deterministic
