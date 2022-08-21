@@ -6,10 +6,14 @@ using UnityEngine.AI;
 public class EnemyAi : MonoBehaviour
 {
     public NavMeshAgent agent;
-    public PlayerManagement playerManagement;
     public Transform player;
 
     public LayerMask obstacles_layer, player_layer;
+
+    // patrolling
+    public Vector3 walk_point;
+    bool walkpoint_set;
+    public float walkpoint_range;
 
     // Attacking
     [Header("Enemy attributes")]
@@ -31,7 +35,6 @@ public class EnemyAi : MonoBehaviour
     {
         player = GameObject.Find("Kachujin G Rosales").transform;
         agent = GetComponent<NavMeshAgent>();
-        playerManagement = GetComponent<PlayerManagement>();
     }
 
     public void Update()
@@ -40,6 +43,11 @@ public class EnemyAi : MonoBehaviour
         player_in_sight_range = Physics.CheckSphere(transform.position, sight_range, player_layer);
         player_in_attack_range = Physics.CheckSphere(transform.position, attack_range, player_layer);
 
+        if (!player_in_sight_range && !player_in_attack_range)
+        {
+            Patrolling();
+        }
+        
         if (player_in_sight_range && !player_in_attack_range)
         {
             ChasePlayer();
@@ -49,8 +57,43 @@ public class EnemyAi : MonoBehaviour
             AttackPlayer();
         }
 
-
     }
+
+    private void Patrolling()
+    {
+        if (!walkpoint_set)
+        {
+            SearchWalkPoint();
+        }
+
+        if (walkpoint_set)
+        {
+            agent.SetDestination(walk_point);
+        }
+
+        Vector3 distance_to_walk_point = transform.position - walk_point;
+
+        // if destination is reached, search for a new walk point
+        if (distance_to_walk_point.magnitude < 1f)
+        {
+            walkpoint_set = false;
+        }
+    }
+
+    private void SearchWalkPoint()
+    {
+        float randomZ = Random.Range(-walkpoint_range, walkpoint_range);
+        float randomX = Random.Range(-walkpoint_range, walkpoint_range);
+
+        walk_point = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);   
+
+        // check if point is inside the map
+        if (Physics.Raycast(walk_point, -transform.up, 2f, obstacles_layer))
+        {
+            walkpoint_set = true;
+        }
+    }
+
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
@@ -64,8 +107,6 @@ public class EnemyAi : MonoBehaviour
 
         if (!already_attacked)
         {
-            // TODO: player does not take dmg, needs fix
-            playerManagement.TakeDamage(attack_damage);
             already_attacked = true;
             Invoke(nameof(ResetAttack), time_between_attacks);
         }
