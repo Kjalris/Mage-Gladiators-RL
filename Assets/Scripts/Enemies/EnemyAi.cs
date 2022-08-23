@@ -106,8 +106,16 @@ public class EnemyAi : MonoBehaviour
    
         if (!already_attacked)
         {
-            // TODO: Make player take dmg
-            already_attacked = true;
+            Collider[] players = Physics.OverlapSphere(transform.position, attack_range, player_layer);
+            for (int i = 0; i < players.Length; i++)
+            {
+                if (players[i].GetComponent<PlayerManagement>() != null)
+                {
+                    players[i].GetComponent<PlayerManagement>().TakeDamage(attack_damage);
+                    already_attacked = true;
+                }
+
+            }
             Invoke("ResetAttack", time_between_attacks);
         }
     

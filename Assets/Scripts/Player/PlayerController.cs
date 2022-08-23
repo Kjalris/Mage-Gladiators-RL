@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         if (playerManagement.GetCurrentHP() == 0)
         {
             animator.Play("Death");
-            Invoke("Delay", 3f);
+            Invoke("Delay", 3.2f);
             return;
         }
 

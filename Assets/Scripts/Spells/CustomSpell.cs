@@ -64,7 +64,6 @@ public class CustomSpell : MonoBehaviour
 
         for (int i = 0; i < enemies.Length; i++)
         {
-
             enemies[i].GetComponent<EnemyAi>().RecieveDamage(explosion_damage);
         } 
 

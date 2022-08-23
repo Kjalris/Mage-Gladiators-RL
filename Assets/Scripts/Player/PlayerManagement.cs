@@ -19,12 +19,6 @@ public class PlayerManagement : MonoBehaviour
 
     private void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            TakeDamage(1);
-        }
-
         if (hp_display != null)
         {
             hp_display.SetText(current_hp + " / " + max_hp);
@@ -33,7 +27,6 @@ public class PlayerManagement : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-
         current_hp -= damage;
 
         health_bar.SetHP(current_hp);

@@ -2358,7 +2358,7 @@ MonoBehaviour:
   walk_point: {x: 0, y: 0, z: 0}
   walkpoint_range: 10
   time_between_attacks: 2
-  attack_damage: 1
+  attack_damage: 10
   attack_range: 2
   sight_range: 10
   health: 1000
@@ -5018,7 +5018,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 918472699}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12141,6 +12141,18 @@ PrefabInstance:
       propertyPath: mana_display
       value: 
       objectReference: {fileID: 720615947}
+    - target: {fileID: 6271482705077853024, guid: 5cf25f6daaad67e43864b11681fbae9a, type: 3}
+      propertyPath: player_layer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 6271482705077853025, guid: 5cf25f6daaad67e43864b11681fbae9a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6271482705077853028, guid: 5cf25f6daaad67e43864b11681fbae9a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6271482705077853031, guid: 5cf25f6daaad67e43864b11681fbae9a, type: 3}
       propertyPath: m_RootOrder
       value: 0
