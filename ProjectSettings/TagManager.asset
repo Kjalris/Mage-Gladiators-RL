@@ -18,7 +18,7 @@ TagManager:
   - enemies_layer
   - spells_layer
   - player_layer
-  - 
+  - enemy_pathing
   - 
   - 
   - 

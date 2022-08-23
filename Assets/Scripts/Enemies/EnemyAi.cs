@@ -7,7 +7,6 @@ public class EnemyAi : MonoBehaviour
 {
     public NavMeshAgent agent;
     public Transform player;
-
     public LayerMask obstacles_layer, player_layer;
 
     // patrolling
@@ -22,7 +21,7 @@ public class EnemyAi : MonoBehaviour
     [SerializeField] float attack_range;
     [SerializeField] float sight_range;
     [SerializeField] int health;
-    bool already_attacked = false;
+    [SerializeField] bool already_attacked = false;
 
     // States
     [Header("State")]
@@ -104,12 +103,14 @@ public class EnemyAi : MonoBehaviour
         agent.SetDestination(transform.position);
 
         transform.LookAt(player);
-
+   
         if (!already_attacked)
         {
+            // TODO: Make player take dmg
             already_attacked = true;
-            Invoke(nameof(ResetAttack), time_between_attacks);
+            Invoke("ResetAttack", time_between_attacks);
         }
+    
     }
 
     public void ResetAttack()
@@ -124,7 +125,7 @@ public class EnemyAi : MonoBehaviour
         if (health <= 0)
         {
             // TODO: Insert death animation of enemies
-            Invoke(nameof(DestroyEnemy), 0.5f);
+            Invoke(nameof(DestroyEnemy), 0.05f);
         }
     }
 
