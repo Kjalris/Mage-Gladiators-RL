@@ -78,6 +78,11 @@ public class SpellCasting : MonoBehaviour
         {
             Reload();
         }
+        // auto reload
+        if (mana_left == 0)
+        {
+            Reload();
+        }
 
         // check if all the parameters are ready to be able to cast
         if (ready_to_cast && casting && !reloading && mana_left > 0)
