@@ -59,7 +59,7 @@ public class SpellCasting : MonoBehaviour
 
         if (mana_display != null)
         {
-            mana_display.SetText(mana_left / mana_pr_spellcast + " / " + mana_size / mana_pr_spellcast);
+            mana_display.SetText(mana_left + " / " + mana_size);
         }
         manaBar.SetMana(mana_left);
     }
@@ -78,11 +78,7 @@ public class SpellCasting : MonoBehaviour
         {
             Reload();
         }
-        // auto reload
-        if (mana_left == 0)
-        {
-            Reload();
-        }
+
 
         // check if all the parameters are ready to be able to cast
         if (ready_to_cast && casting && !reloading && mana_left > 0)
