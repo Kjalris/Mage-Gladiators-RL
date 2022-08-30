@@ -367,6 +367,7 @@
 "Assets/Scripts/Player/PlayerManagement.cs"
 "Assets/Scripts/Spells/CustomSpell.cs"
 "Assets/Scripts/Spells/SpellCasting.cs"
+"Assets/Scripts/UI/GameOverScreen.cs"
 "Assets/Scripts/UI/HealthBar.cs"
 "Assets/Scripts/UI/MainMenu.cs"
 "Assets/Scripts/UI/ManaBar.cs"

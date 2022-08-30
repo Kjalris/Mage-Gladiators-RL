@@ -19,12 +19,17 @@ public class PlayerController : MonoBehaviour
     bool running = false;
     bool is_grounded;
 
+    // Increment this when a new stage is reached
+    public int stage_reached = 999;
+
     Quaternion target_rotation;
 
     CameraController camera_controller;
     Animator animator;
     CharacterController characterController;
     PlayerManagement playerManagement;
+    public GameOverScreen gameOverScreen;
+    
 
     private void Awake()
     {
@@ -35,11 +40,14 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        // If player reaches 0 hp, destroy player
+        // If player reaches 0 hp, game is over
         if (playerManagement.GetCurrentHP() <= 0)
         {
+            gameOverScreen.SetActive(stage_reached);
             animator.Play("Death");
             Invoke("Delay", 3.2f);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             return;
         }
 
