@@ -7,11 +7,12 @@ using UnityEngine.SceneManagement;
 
 public class GameOverScreen : MonoBehaviour
 {
-    public TMP_Text stage_text;
-    public void SetActive(int stage)
+    public TextMeshProUGUI stage_text;
+    public TextMeshProUGUI stagecounter;
+    public void SetActive()
     {
         gameObject.SetActive(true);
-        stage_text.SetText("YOU MADE IT TO STAGE " + stage.ToString());
+        stage_text.SetText("YOU MADE IT TO STAGE " + stagecounter.GetParsedText());
     }
 
     public void RemoveActive()

@@ -19,9 +19,6 @@ public class PlayerController : MonoBehaviour
     bool running = false;
     bool is_grounded;
 
-    // Increment this when a new stage is reached
-    public int stage_reached = 999;
-
     Quaternion target_rotation;
 
     CameraController camera_controller;
@@ -29,8 +26,9 @@ public class PlayerController : MonoBehaviour
     CharacterController characterController;
     PlayerManagement playerManagement;
     public GameOverScreen gameOverScreen;
+    public GameObject stageCounter;
     
-
+    
     private void Awake()
     {
         camera_controller = Camera.main.GetComponent<CameraController>();
@@ -43,7 +41,8 @@ public class PlayerController : MonoBehaviour
         // If player reaches 0 hp, game is over
         if (playerManagement.GetCurrentHP() <= 0)
         {
-            gameOverScreen.SetActive(stage_reached);
+            gameOverScreen.SetActive();
+            stageCounter.SetActive(false);
             animator.Play("Death");
             Invoke("Delay", 3.2f);
             Cursor.lockState = CursorLockMode.None;
@@ -90,14 +89,14 @@ public class PlayerController : MonoBehaviour
                 {
                     characterController.Move(move_direction * movement_speed * Time.deltaTime);
                     target_rotation = Quaternion.LookRotation(move_direction);
-                    animator.SetFloat("Move_amount", movement*10, 0.2f, Time.deltaTime);
+                    animator.SetFloat("Move_amount", movement * 10, 0.2f, Time.deltaTime);
                 }
                 running = false;
             }
 
-            characterController.Move(move_direction * movement_speed/2 * Time.deltaTime);
+            characterController.Move(move_direction * movement_speed / 2 * Time.deltaTime);
             target_rotation = Quaternion.LookRotation(move_direction);
-            animator.SetFloat("Move_amount", movement/5, 0.2f, Time.deltaTime);
+            animator.SetFloat("Move_amount", movement / 5, 0.2f, Time.deltaTime);
         }
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation, target_rotation, rotation_speed * Time.deltaTime);

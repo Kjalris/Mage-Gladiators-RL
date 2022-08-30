@@ -363,6 +363,7 @@
 "Assets/navmeshsurface.cs"
 "Assets/Scripts/CameraController.cs"
 "Assets/Scripts/Enemies/EnemyAi.cs"
+"Assets/Scripts/Enemies/WaveSpawner.cs"
 "Assets/Scripts/Player/PlayerController.cs"
 "Assets/Scripts/Player/PlayerManagement.cs"
 "Assets/Scripts/Spells/CustomSpell.cs"
