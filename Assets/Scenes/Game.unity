@@ -4090,13 +4090,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c7ecf77d423d5649a76a325b605296b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy_prefab: {fileID: 999305138506881465, guid: 62e80338b9a12334a9b2be965a6fb089, type: 3}
+  waves:
+  - enemy: {fileID: 999305138506881466, guid: 62e80338b9a12334a9b2be965a6fb089, type: 3}
+    count: 1
+    spawn_rate: 2
+  - enemy: {fileID: 999305138506881466, guid: 62e80338b9a12334a9b2be965a6fb089, type: 3}
+    count: 1
+    spawn_rate: 3
+  - enemy: {fileID: 999305138506881466, guid: 62e80338b9a12334a9b2be965a6fb089, type: 3}
+    count: 0
+    spawn_rate: 0
   spawn_point_1: {fileID: 505840566}
   spawn_point_2: {fileID: 1142717379}
   spawn_point_3: {fileID: 973619146}
   spawn_point_4: {fileID: 1729174141}
   stage_counter_text: {fileID: 977180193}
-  time_between_waves: 15
+  time_between_waves: 1
 --- !u!1 &1046517391
 GameObject:
   m_ObjectHideFlags: 0

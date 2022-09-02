@@ -28,8 +28,6 @@ public class EnemyAi : MonoBehaviour
     public bool player_in_attack_range;
     public bool player_in_sight_range;
 
-
-
     public void Awake()
     {
         player = GameObject.Find("Kachujin G Rosales").transform;
@@ -133,13 +131,14 @@ public class EnemyAi : MonoBehaviour
         if (health <= 0)
         {
             // TODO: Insert death animation of enemies
-            Invoke(nameof(DestroyEnemy), 0.05f);
+            Invoke(nameof(DestroyEnemy), 0f);
         }
     }
 
     public void DestroyEnemy()
     {
         Destroy(gameObject);
+        WaveSpawner.enemies_alive = WaveSpawner.enemies_alive - 1;
     }
 
     private void OnDrawGizmosSelected()
