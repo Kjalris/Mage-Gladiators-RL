@@ -21,11 +21,11 @@ public class GameOverScreen : MonoBehaviour
     }
 
     public void RestartButton()
-    {
-        SceneManager.LoadScene("Game");
+    {        
+        SceneManager.LoadSceneAsync("Game");
     }    
     public void MainMenuButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadSceneAsync("Game Menu");
     }
 }

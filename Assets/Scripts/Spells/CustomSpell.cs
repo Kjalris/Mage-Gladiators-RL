@@ -66,9 +66,7 @@ public class CustomSpell : MonoBehaviour
         {
             enemies[i].GetComponent<EnemyAi>().RecieveDamage(explosion_damage);
         } 
-
-        // delay explosion to avoid bugs, is not be visible ingame
-        Invoke("Delay", 0.05f);
+        Invoke("Delay", 0f);
 
     }
 

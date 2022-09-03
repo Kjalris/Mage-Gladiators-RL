@@ -34,9 +34,9 @@ public class SpellCasting : MonoBehaviour
     public TextMeshProUGUI mana_display;
     public ManaBar manaBar;
 
-    // player layer mask and value used to ignore spellcasting in the play layer (ray cast stuff)
-    public LayerMask player_layer;
-    int layerMask;
+    // What layer the raycast needs to check, leave blank in inspector for no layers
+    public LayerMask my_layer_mask;
+
 
     // make sure when starting that mana is set to max and is ready
     public void Awake()
@@ -49,8 +49,6 @@ public class SpellCasting : MonoBehaviour
     {
         mana_left = mana_size;
         manaBar.SetMaxMana(mana_size);
-        // Ignore all layers except the layer which is specified. The ~ makes it inverse so it ignores the player layer but uses all the others
-        layerMask = ~player_layer.value;
     }
 
     public void Update()
@@ -99,7 +97,7 @@ public class SpellCasting : MonoBehaviour
 
         // check if ray hit anything
         Vector3 target_point;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, my_layer_mask))
         {
             target_point = hit.point;
         }
