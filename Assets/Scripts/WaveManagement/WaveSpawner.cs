@@ -20,7 +20,12 @@ public class WaveSpawner : MonoBehaviour
     public float time_between_waves = 5f;
     private float countdown = 2f;
 
-    private int stage_index = 0;
+    private int stage_index = 1;
+
+    private void Start()
+    {
+        enemies_alive = 0;
+    }
 
     private void Update()
     {
@@ -57,10 +62,10 @@ public class WaveSpawner : MonoBehaviour
 
         if (stage_index == waves.Length)
         {
-            // TODO: Make an you win screen
-            Debug.Log("You Win!");
+            stage_counter_text.SetText("YOU WON!");
             this.enabled = false;
         }
+
     }
 
     void SpawnEnemy(GameObject enemy)
