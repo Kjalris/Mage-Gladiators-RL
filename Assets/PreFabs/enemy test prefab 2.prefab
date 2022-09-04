@@ -140,10 +140,10 @@ MonoBehaviour:
   walk_point: {x: 0, y: 0, z: 0}
   walkpoint_range: 100
   time_between_attacks: 2
-  attack_damage: 5
+  attack_damage: 2
   attack_range: 2
   sight_range: 250
-  health: 25
+  health: 7
   already_attacked: 0
   player_in_attack_range: 0
   player_in_sight_range: 0

@@ -24,10 +24,7 @@ public class PlayerController : MonoBehaviour
     CameraController camera_controller;
     Animator animator;
     CharacterController characterController;
-    PlayerManagement playerManagement;
-    public GameOverScreen gameOverScreen;
-    public GameObject stageCounter;
-    
+    PlayerManagement playerManagement;   
     
     private void Awake()
     {
@@ -39,14 +36,11 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         // If player reaches 0 hp, game is over
+        // This is only the player related stuff, see GameManager script for the screens and more
         if (playerManagement.GetCurrentHP() <= 0)
         {
-            gameOverScreen.SetActive();
-            stageCounter.SetActive(false);
             animator.Play("Death");
             Invoke("Delay", 3.2f);
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
             return;
         }
 
